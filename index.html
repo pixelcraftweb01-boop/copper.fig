@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Copper Fig</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Young+Serif&display=swap">
+<style>
+:root{
+  --bg:#EEF1E6; --surface:#E0E6D3; --text:#14312D; --muted:#4B6560; --accent:#B4590F; --on-accent:#FFFFFF; --line:#B9C4B0;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0F2623; --surface:#16332F; --text:#E9EDE0; --muted:#A3B8B1; --accent:#E8B931; --on-accent:#1A1400; --line:#2D4B45; color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#0F2623; --surface:#16332F; --text:#E9EDE0; --muted:#A3B8B1; --accent:#E8B931; --on-accent:#1A1400; --line:#2D4B45; color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.0625rem/1.65 "DM Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Young Serif",Georgia,serif;font-weight:400;line-height:1.1;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:68rem;margin:0 auto;padding:0 1.25rem}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0}
+.logo{font-family:"Young Serif",Georgia,serif;font-size:1.3rem;text-decoration:none}
+nav a{margin-left:1.25rem;text-decoration:none;color:var(--muted);font-weight:500}
+nav a:hover{color:var(--text)}
+.hero{padding:4rem 0 5rem}
+.hero h1{font-size:clamp(3.2rem,12vw,8.5rem);letter-spacing:-.02em;max-width:11ch}
+.hero p{max-width:34rem;color:var(--muted);font-size:1.2rem;margin:1.5rem 0 2rem}
+.btn{display:inline-block;background:var(--accent);color:var(--on-accent);font:700 1rem "DM Sans",sans-serif;padding:.9rem 1.6rem;border:0;border-radius:.4rem;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+section{padding:4rem 0;border-top:1px solid var(--line)}
+section h2{font-size:clamp(2rem,5vw,3rem);margin-bottom:1.75rem}
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.tab{font:500 1rem "DM Sans",sans-serif;background:transparent;color:var(--text);border:1px solid var(--line);border-radius:2rem;padding:.5rem 1.1rem;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--text);color:var(--bg);border-color:var(--text)}
+.dish{display:grid;grid-template-columns:1fr auto;gap:.25rem 1.5rem;padding:1.1rem 0;border-bottom:1px dashed var(--line)}
+.dish h3{font-size:1.3rem}
+.dish .price{font-weight:700;color:var(--accent)}
+.dish p{grid-column:1;margin:0;color:var(--muted);max-width:42rem}
+.two{display:grid;gap:3rem;grid-template-columns:1fr}
+@media(min-width:760px){.two{grid-template-columns:1fr 1fr}}
+.about p{max-width:36rem}
+table{border-collapse:collapse;width:100%}
+td{padding:.5rem 0;border-bottom:1px solid var(--line)}
+td:last-child{text-align:right;color:var(--muted)}
+form{display:grid;gap:1rem;background:var(--surface);padding:1.5rem;border-radius:.6rem}
+label{display:grid;gap:.3rem;font-weight:500}
+input,select{font:inherit;padding:.65rem .75rem;border:1px solid var(--line);border-radius:.35rem;background:var(--bg);color:var(--text)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+#msg{margin:0;font-weight:500;min-height:1.5em}
+footer{padding:2.5rem 0 3rem;border-top:1px solid var(--line);color:var(--muted)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="#top">The Copper Fig</a>
+    <nav><a href="#menu">Menu</a><a href="#about">About</a><a href="#visit">Visit</a></nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <h1>Fire, figs and good company.</h1>
+      <p>A neighborhood kitchen cooking over open flame. Seasonal plates, slow-roasted everything, and a table with your name on it.</p>
+      <a class="btn" href="#visit">Book a table</a>
+    </div>
+
+    <section id="menu">
+      <h2>Menu</h2>
+      <div class="tabs" role="tablist" aria-label="Menu sections"></div>
+      <div id="dishes" role="tabpanel"></div>
+    </section>
+
+    <section id="about" class="about">
+      <h2>About us</h2>
+      <p>Chef Marlo Veshti opened The Copper Fig in 2019 with one wood oven and a short menu. The oven is still the heart of the room. We buy from Tessaly Farm and Dunmore Creamery, and the menu changes whenever the market does.</p>
+    </section>
+
+    <section id="visit">
+      <div class="two">
+        <div>
+          <h2>Visit</h2>
+          <p>48 Larkspur Lane<br>Willowmere, OR 97001<br>(555) 014-2290</p>
+          <table>
+            <tr><td>Tuesday – Thursday</td><td>5 pm – 10 pm</td></tr>
+            <tr><td>Friday – Saturday</td><td>5 pm – 11 pm</td></tr>
+            <tr><td>Sunday</td><td>11 am – 8 pm</td></tr>
+            <tr><td>Monday</td><td>Closed</td></tr>
+          </table>
+        </div>
+        <div>
+          <h2>Reserve</h2>
+          <form id="rsvp">
+            <label>Name<input id="name" required autocomplete="name"></label>
+            <div class="row">
+              <label>Date<input id="date" type="date" required></label>
+              <label>Guests<select id="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label>
+            </div>
+            <button class="btn" type="submit">Request reservation</button>
+            <p id="msg" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 The Copper Fig. All names and details on this page are made up.</footer>
+</div>
+
+<script>
+const menu={
+  Starters:[
+    ["Charred Fig & Whipped Feta","Honey, pistachio, grilled sourdough.","$13"],
+    ["Smoked Beet Tartare","Capers, horseradish cream, rye crisps.","$12"],
+    ["Brindle Bay Oysters","Half dozen, pickled shallot mignonette.","$21"]
+  ],
+  Mains:[
+    ["Wood-Fired Halibut","Fennel, blistered tomatoes, saffron butter.","$34"],
+    ["Hollis Ranch Short Rib","Eight-hour braise, polenta, gremolata.","$38"],
+    ["Wild Mushroom Pappardelle","Hand-cut pasta, thyme, aged pecorino.","$26"],
+    ["Cinder Roasted Cauliflower","Tahini, dates, toasted almonds.","$24"]
+  ],
+  Desserts:[
+    ["Burnt Honey Panna Cotta","Candied walnuts, orange zest.","$10"],
+    ["Dark Chocolate Pot de Crème","Sea salt, olive oil, cherry compote.","$11"]
+  ],
+  Drinks:[
+    ["Copper Fig Fizz","Fig shrub, gin, lemon, soda.","$14"],
+    ["Ember Old Fashioned","Smoked rye, maple, orange bitters.","$15"],
+    ["Juniper Sparkler","Non-alcoholic. Juniper, grapefruit, tonic.","$8"]
+  ]
+};
+const tabs=document.querySelector(".tabs"), box=document.getElementById("dishes");
+function show(k){
+  [...tabs.children].forEach(b=>b.setAttribute("aria-selected",b.textContent===k));
+  box.innerHTML=menu[k].map(d=>`<div class="dish"><h3>${d[0]}</h3><span class="price">${d[2]}</span><p>${d[1]}</p></div>`).join("");
+}
+Object.keys(menu).forEach(k=>{
+  const b=document.createElement("button");
+  b.className="tab";b.type="button";b.textContent=k;b.setAttribute("role","tab");
+  b.onclick=()=>show(k);tabs.appendChild(b);
+});
+show("Starters");
+const d=document.getElementById("date");
+d.min=new Date().toISOString().split("T")[0];
+document.getElementById("rsvp").addEventListener("submit",e=>{
+  e.preventDefault();
+  const n=document.getElementById("name").value.trim(), g=document.getElementById("guests").value;
+  document.getElementById("msg").textContent=`Thanks, ${n}. We’ve received your request for ${g} on ${d.value} and will confirm shortly.`;
+  e.target.reset();
+});
+</script>
+</body>
+</html>
